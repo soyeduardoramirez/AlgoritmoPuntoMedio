@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Algoritmo de Punto Medio</title>
+</head>
+<body>
+	<h1>Algoritmo de Punto Medio</h1>
+	<p>Ingrese el radio de la línea recta:</p>
+	<input type="number" id="radius">
+	<button onclick="draw()">Dibujar</button>
+	<br><br>
+	<canvas id="canvas" width="400" height="400"></canvas>
+	<script>
+		function draw() {
+			// Obtener el canvas y su contexto
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+
+			// Obtener el radio de la línea recta del usuario
+			var radius = parseInt(document.getElementById("radius").value);
+
+			// Definir la longitud de la línea recta y calcular las coordenadas del punto medio y los valores de incremento
+			var length = radius ;
+			        
+			var x0 = canvas.width /2 - length ; 
+			var y0 = canvas.height /2 - length ;
+			var x = x0;
+			var y = y0;
+			var dx = 1;
+			var dy = 1;
+
+			// Dibujar el círculo y la línea recta
+			ctx.beginPath();
+			ctx.arc(canvas.width/2, canvas.height /2, radius, 0, 2*Math.PI);
+			ctx.stroke();
+			ctx.beginPath();
+			ctx.moveTo(x, y); 
+			       
+			while (x < x0 + length && y < y0 + length) {
+				ctx.lineTo(x, y);
+				x += dx;
+				y += dy;
+			}
+			ctx.stroke();
+		}
+	</script>
+</body>
+</html>
+
